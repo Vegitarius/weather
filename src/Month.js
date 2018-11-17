@@ -3,10 +3,13 @@ import './Month.css';
 import Week from './Week';
 
 const Month = (props) => {
-  let month = props.date.getMonth() + 1;
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  let monthNum = props.date.getMonth();
+  let monthName = months[monthNum];
+
   return (
     <div id="month">
-      <h1>{month}</h1>
+      <h1>{monthName}</h1>
       <span>S</span>
       <span>M</span>
       <span>T</span>
