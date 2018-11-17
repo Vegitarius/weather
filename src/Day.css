@@ -1,0 +1,10 @@
+#day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  background: lightgray;
+  border: 1px solid black;
+  margin: 5px;
+  border-radius: 5px;
+}
