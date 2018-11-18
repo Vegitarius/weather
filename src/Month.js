@@ -23,6 +23,8 @@ const Month = (props) => {
     }
   };
 
+// For properly displaying number of weeks in month (for months starting on sunday for instance)
+
   let weekFive, weekSix;
 
   if(month[28] !== "") {
