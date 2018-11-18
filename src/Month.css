@@ -8,10 +8,14 @@
 
 #month h1 {
   order: 1;
-  flex: 1 100%;
+  flex: 1 80%;
+}
+
+#month h3 {
+  order: 1;
 }
 
 #month span {
-  order: 2;
+  order: 3;
   flex: 1 14%;
 }

@@ -1,11 +1,10 @@
 import React from 'react';
 import './Day.css';
 
-const Day = () => {
-  const date = new Date().getDay();
+const Day = (props) => {
   return (
     <div id="day">
-      {date}
+      {props.day}
     </div>
   )
 }
