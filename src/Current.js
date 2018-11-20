@@ -5,14 +5,24 @@ export default class Current extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      place: "New York, New York"
+      place: "New York, New York",
+      currentTemp: '',
+      currentSummary: '',
+      currentFeelsLike: '',
+      todayHigh: '',
+      todayLow: '',
     }
   }
 
   updateArea() {
     if (this.props.city && this.props.state) {
       this.setState({
-        place: this.props.city + ", " + this.props.state
+        place: this.props.city + ", " + this.props.state,
+        currentTemp: this.props.weather.currently.temperature.toFixed(0),
+        currentSummary: this.props.weather.currently.summary,
+        currentFeelsLike: this.props.weather.currently.apparentTemperature,
+        todayHigh: this.props.weather.daily.data[0].temperatureHigh,
+        todayLow: this.props.weather.daily.data[0].temperatureLow
       })
     }
   }
@@ -30,18 +40,17 @@ export default class Current extends React.Component {
           <img src={require("./assets/cloudy-sym.jpg")} alt="cloudy-symbol" />
         </div>
         <div id="col1">
-
           <div id="current-temperature">
-            52&deg;
+            {this.state.currentTemp}&deg;
           </div>
           <div id="current-weather">
-            LIGHT DRIZZLE
+            {this.state.currentSummary}
           </div>
           <div id="current-feels-like">
-            Feels Like 52&deg;
+            Feels Like: {this.state.currentFeelsLike}&deg;
           </div>
           <div id="today-high-low">
-            Hi 60&deg; Low 49&deg;
+            Hi: {this.state.todayHigh}&deg; Low: {this.state.todayLow}&deg;
           </div>
         </div>
         <button onClick={() => {this.updateArea()}}>Update</button>
