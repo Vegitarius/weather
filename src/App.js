@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Current from './Current';
-import Month from './Month';
+import Current from './components/Current/Current';
+import Month from './components/Month/Month';
 import config from './config';
 
 export default class App extends Component {

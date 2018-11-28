@@ -1,6 +1,6 @@
 import React from 'react';
 import './Month.css';
-import Week from './Week';
+import Week from './Week/Week';
 
 const Month = (props) => {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];  

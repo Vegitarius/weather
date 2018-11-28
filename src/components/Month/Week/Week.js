@@ -1,6 +1,6 @@
 import React from 'react';
 import './Week.css';
-import Day from './Day';
+import Day from '../Day/Day';
 
 const Week = (props) => {
   return (

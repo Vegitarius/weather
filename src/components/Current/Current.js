@@ -5,7 +5,7 @@ export default class Current extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      place: "New York, New York",
+      place: "New York, NY",
       currentTemp: '',
       currentSummary: '',
       currentFeelsLike: '',
@@ -40,7 +40,7 @@ export default class Current extends React.Component {
           Today
         </div>
         <div id="weather-img"  className="col2">
-          <img src={require("./assets/cloudy-sym.jpg")} alt="cloudy-symbol" />
+          <img src={require("../../assets/cloudy-sym.jpg")} alt="cloudy-symbol" />
         </div>
         <div id="col1">
           <div id="current-temperature">
