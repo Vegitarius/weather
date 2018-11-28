@@ -10,20 +10,35 @@ export default class App extends Component {
     this.state = {
       location: '',
       weather: '',
-      city: '',
-      state: '',
+      city: 'Manhattan',
+      state: 'New York',
       zipCode: '',
       county: '',
       country: '',
-      latitude: '',
-      longitude: ''
+      latitude: '40.754932',
+      longitude: '-73.984016'
     }
   }
 
-  buttonPusher() {
+  componentWillMount() {
+    this.weatherFinder()
+  }
+
+  async handler() {
+    try {
+      await this.findMe();
+      await this.translateLocation();
+      await this.weatherFinder();
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  }
+
+  handleGeocode() {
     console.log("lat", this.state.latitude, "long", this.state.longitude)
     if (this.state.latitude) {
-      this.geocode();
+      this.translateLocation();
       console.log(this.state.location)
     }
     if (this.state.city) {
@@ -45,7 +60,7 @@ export default class App extends Component {
     navigator.geolocation.getCurrentPosition(success, error);
   }
 
-  geocode() {
+  translateLocation() {
     fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + 
             this.state.latitude + 
             "," +
@@ -56,12 +71,14 @@ export default class App extends Component {
       .then(data => {
         this.setState({
           location: data,
-          city: data.results[4].address_components[1].long_name,
-          state: data.results[4].address_components[3].short_name,
+          city: data.results[0].address_components[2].long_name,
+          state: data.results[0].address_components[4].short_name,
           zipCode: data.results[4].address_components[0],
           county: data.results[4].address_components[2],
           country: data.results[4].address_components[4]
-    })})
+    })
+    console.log(this.state.location);
+  })
   }
   
   weatherFinder() {
@@ -78,14 +95,14 @@ export default class App extends Component {
 
   render() {
     let date = new Date();
-    console.log(this.state.weather)
+    console.log(this.state.location)
     return (
       <div className="App">
         <a href="https://darksky.net/poweredby/">Powered by Dark Sky</a>
         <Current city={this.state.city} state={this.state.state} weather={this.state.weather} />
         <Month date={date} />
-        <button onClick={ () => this.buttonPusher() }>Geocode</button>
-        <button onClick={ () =>  this.findMe() }>Find Me</button>
+        <button onClick={ () => this.handleGeocode() }>Geocode</button>
+        <button onClick={ () =>  this.handler() }>Find Me</button>
       </div>
     );
   }

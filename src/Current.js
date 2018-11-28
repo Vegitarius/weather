@@ -14,15 +14,18 @@ export default class Current extends React.Component {
     }
   }
 
-  updateArea() {
+  componentWillReceiveProps(nextProps) {
+    if (this.props !== nextProps) {
+      console.log(nextProps)
+    }
     if (this.props.city && this.props.state) {
       this.setState({
-        place: this.props.city + ", " + this.props.state,
-        currentTemp: this.props.weather.currently.temperature.toFixed(0),
-        currentSummary: this.props.weather.currently.summary,
-        currentFeelsLike: this.props.weather.currently.apparentTemperature,
-        todayHigh: this.props.weather.daily.data[0].temperatureHigh,
-        todayLow: this.props.weather.daily.data[0].temperatureLow
+        place: nextProps.city + ", " + nextProps.state,
+        currentTemp: nextProps.weather.currently.temperature.toFixed(0),
+        currentSummary: nextProps.weather.currently.summary,
+        currentFeelsLike: nextProps.weather.currently.apparentTemperature.toFixed(0),
+        todayHigh: nextProps.weather.daily.data[0].temperatureHigh.toFixed(0),
+        todayLow: nextProps.weather.daily.data[0].temperatureLow.toFixed(0)
       })
     }
   }
@@ -53,7 +56,6 @@ export default class Current extends React.Component {
             Hi: {this.state.todayHigh}&deg; Low: {this.state.todayLow}&deg;
           </div>
         </div>
-        <button onClick={() => {this.updateArea()}}>Update</button>
       </div>
     )
   }
