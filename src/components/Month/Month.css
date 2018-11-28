@@ -1,0 +1,21 @@
+#month {
+  width: 50vw;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#month h1 {
+  order: 1;
+  flex: 1 80%;
+}
+
+#month h3 {
+  order: 1;
+}
+
+#month span {
+  order: 3;
+  flex: 1 14%;
+}

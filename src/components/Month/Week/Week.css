@@ -1,0 +1,13 @@
+#week-container {
+    /* For Parent Div */
+    order: 3;
+    flex: 1 0 100%;
+    /*  */
+
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#week-container > * {
+  flex: 1 0 10%
+}

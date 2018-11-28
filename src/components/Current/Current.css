@@ -1,0 +1,54 @@
+#current {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  background: lightblue;
+  width: 50vw;
+  height: auto;
+  font-size: 24px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 30px gray;
+}
+
+#location {
+  flex: 1 50%;
+  order: 1;
+  font-size: 30px;
+  text-align: start;
+}
+
+#date {
+  flex: 1 25%;
+  order: 2;
+}
+
+#weather-img {
+  height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+
+}
+
+.col2 {
+  order: 3;
+  flex: 1 50%;
+}
+
+img {
+  width: 180px;
+  height: 130px;
+}
+
+#col1 {
+  flex: 1 50%;
+  order: 4;
+  text-align: end;
+  line-height: 42px;
+}
+
+#current-temperature {
+  font-size: 50px;
+  line-height: 60px;
+}
