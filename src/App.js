@@ -55,7 +55,7 @@ export default class App extends Component {
             "," +
             this.state.longitude + 
             "&key=" + 
-            process.env.REACT_APP_LOCATION_KEY)
+            process.env.LOCATION_KEY)
       .then(response => response.json())  
       .then(data => {
         this.setState({
@@ -71,7 +71,7 @@ export default class App extends Component {
   
   weatherFinder() {
     const corsProxy = "https://cors-anywhere.herokuapp.com/";
-    const targetUrl = `https://api.darksky.net/forecast/${process.env.REACT_APP_WEATHER_KEY}/${this.state.latitude},${this.state.longitude}`
+    const targetUrl = `https://api.darksky.net/forecast/${process.env.WEATHER_KEY}/${this.state.latitude},${this.state.longitude}`
     fetch(corsProxy + targetUrl)
     .then(response => response.json())
     .then(data => { 
