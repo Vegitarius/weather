@@ -21,18 +21,8 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    this.weatherFinder()
-  }
-
-  async handler() {
-    try {
-      await this.findMe();
-      await this.translateLocation();
-      await this.weatherFinder();
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
+    this.findMe();
+    this.weatherFinder();
   }
 
   handleGeocode() {
@@ -77,7 +67,6 @@ export default class App extends Component {
           county: data.results[4].address_components[2],
           country: data.results[4].address_components[4]
     })
-    console.log(this.state.location);
   })
   }
   
@@ -95,14 +84,12 @@ export default class App extends Component {
 
   render() {
     let date = new Date();
-    console.log(this.state.location)
     return (
       <div className="App">
         <a href="https://darksky.net/poweredby/">Powered by Dark Sky</a>
         <Current city={this.state.city} state={this.state.state} weather={this.state.weather} />
         <Month date={date} />
-        <button onClick={ () => this.handleGeocode() }>Geocode</button>
-        <button onClick={ () =>  this.handler() }>Find Me</button>
+        <button onClick={ () => this.handleGeocode() }>Update For Me</button>
       </div>
     );
   }

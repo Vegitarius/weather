@@ -5,7 +5,7 @@ export default class Current extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      place: "New York, NY",
+      place: "Manhattan, NY",
       currentTemp: '',
       currentSummary: '',
       currentFeelsLike: '',
@@ -15,10 +15,7 @@ export default class Current extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps) {
-      console.log(nextProps)
-    }
-    if (this.props.city && this.props.state) {
+    if (nextProps.city && nextProps.state && nextProps.weather) {
       this.setState({
         place: nextProps.city + ", " + nextProps.state,
         currentTemp: nextProps.weather.currently.temperature.toFixed(0),
