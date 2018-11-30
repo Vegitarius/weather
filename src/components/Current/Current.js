@@ -33,7 +33,7 @@ export default class Current extends React.Component {
         <div id="location">
           {this.state.place}
         </div>
-        <div id="date">
+        <div id="date" className="text-r">
           Today
         </div>
         <div id="weather-img"  className="col2">

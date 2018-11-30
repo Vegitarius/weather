@@ -1,21 +1,40 @@
 #month {
   width: 50vw;
-  display: flex;
   flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
 }
 
 #month h1 {
   order: 1;
-  flex: 1 80%;
+  flex: 1 70%;
+  flex-direction: row;
 }
 
 #month h3 {
   order: 1;
+  flex: 1 30%;
 }
 
 #month span {
   order: 3;
   flex: 1 14%;
+}
+
+.arrow::before {
+  position: relative;
+  content: "";
+  display: inline-block;
+  width: .4em;
+  height: .4em;
+  border-right: .2em solid black;
+  border-top: .2em solid black;
+}
+
+.left {
+  transform: rotate(-135deg);
+  margin-right: 20px;
+}
+
+.right {
+  transform: rotate(45deg);
+  margin-left: 25px;
 }

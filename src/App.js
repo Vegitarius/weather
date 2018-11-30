@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import Current from './components/Current/Current';
 import Month from './components/Month/Month';
+import Nav from './components/Nav/Nav';
+import Period from './components/Period/Period';
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
       location: '',
+      geolocate: true,
       weather: '',
       city: 'Manhattan',
       state: 'New York',
@@ -20,12 +23,12 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    this.findMe();
+    this.locateUser();
     this.weatherFinder();
   }
 
+  // sends lat and long to geocode api that translates lat,long into location(city, state etc)
   handleGeocode() {
-    console.log("lat", this.state.latitude, "long", this.state.longitude)
     if (this.state.latitude) {
       this.translateLocation();
       console.log(this.state.location)
@@ -36,7 +39,8 @@ export default class App extends Component {
     this.weatherFinder();
   }
 
-  findMe() {
+
+  locateUser() {
     let success = (position) => {
       this.setState({
         latitude: String(position.coords.latitude),
@@ -46,7 +50,14 @@ export default class App extends Component {
     let error = () => {
       console.log("No Location")
     }
-    navigator.geolocation.getCurrentPosition(success, error);
+    if (navigator.geolocation.getCurrentPosition) {
+      navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+      this.setState({
+        // needs alert to user to manually input location if no browser support
+        geolocate: false
+      })
+    }
   }
 
   translateLocation() {
@@ -69,6 +80,7 @@ export default class App extends Component {
   })
   }
   
+  // sends lat and long to api to return weather data for location
   weatherFinder() {
     const corsProxy = "https://cors-anywhere.herokuapp.com/";
     const targetUrl = `https://api.darksky.net/forecast/${process.env.REACT_APP_WEATHER_KEY}/${this.state.latitude},${this.state.longitude}`
@@ -83,10 +95,13 @@ export default class App extends Component {
 
   render() {
     let date = new Date();
+    console.log(this.state.weather)
     return (
       <div className="App">
-        <a href="https://darksky.net/poweredby/">Powered by Dark Sky</a>
+        <Nav />
+        <Period />
         <Current city={this.state.city} state={this.state.state} weather={this.state.weather} />
+        {/* Weather for next few days */}
         <Month date={date} />
         <button onClick={ () => this.handleGeocode() }>Update For Me</button>
       </div>
