@@ -6,26 +6,28 @@ import Month from './components/Month/Month';
 import Nav from './components/Nav/Nav';
 import Period from './components/Period/Period';
 
-import { translateLocation } from './actions';
+import { translateLocation, handleWeather } from './actions';
 
 const mapStateToProps = state => {
   return {
+    geoPending: state.translateLocation.geoPending,
     city: state.translateLocation.city,
-    state: state.translateLocation.state
+    state: state.translateLocation.state,
+    weatherPending: state.handleWeather.weatherPending,
+    weather: state.handleWeather.weather
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  translateLocation: (lat, long) => dispatch(translateLocation(lat, long))
+  translateLocation: (lat, long) => dispatch(translateLocation(lat, long)),
+  handleWeather: (lat, long) => dispatch(handleWeather(lat, long))
 })
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      location: '',
       geolocate: true,
-      weather: '',
       latitude: '40.754932',
       longitude: '-73.984016'
     }
@@ -33,19 +35,17 @@ class App extends Component {
 
   componentWillMount() {
     this.locateUser();
-    this.weatherFinder();
+    this.props.handleWeather(this.state.latitude, this.state.longitude);
   }
 
-  // sends lat and long to geocode api that translates lat,long into location(city, state etc)
-  handleGeocode() {
-    if (this.state.latitude) {
+  handleUpdate() {
+    if (this.state.latitude && this.state.longitude) {
+      // sends lat and long to geocode api that translates lat,long into location(city, state etc)
       this.props.translateLocation(this.state.latitude, this.state.longitude);
-      console.log(this.state.location)
+      // sends lat and long to api to return weather data for location
+      this.props.handleWeather(this.state.latitude, this.state.longitude);
     }
-    if (this.state.city) {
-      console.log(this.state.location);
-    }
-    this.weatherFinder();
+
   }
 
 
@@ -63,56 +63,22 @@ class App extends Component {
       navigator.geolocation.getCurrentPosition(success, error);
     } else {
       this.setState({
-        // needs alert to user to manually input location if no browser support
+        // needs alert to user to manually input location if no browser support or declined
         geolocate: false
       })
     }
   }
 
-  // translateLocation() {
-  //   fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + 
-  //           this.state.latitude + 
-  //           "," +
-  //           this.state.longitude + 
-  //           "&key=" + 
-  //           process.env.REACT_APP_LOCATION_KEY)
-  //     .then(response => response.json())  
-  //     .then(data => {
-  //       this.setState({
-  //         location: data,
-  //         city: data.results[0].address_components[2].long_name,
-  //         state: data.results[0].address_components[4].short_name,
-  //         zipCode: data.results[4].address_components[0],
-  //         county: data.results[4].address_components[2],
-  //         country: data.results[4].address_components[4]
-  //   })
-  // })
-  // }
-  
-  // sends lat and long to api to return weather data for location
-  weatherFinder() {
-    const corsProxy = "https://cors-anywhere.herokuapp.com/";
-    const targetUrl = `https://api.darksky.net/forecast/${process.env.REACT_APP_WEATHER_KEY}/${this.state.latitude},${this.state.longitude}`
-    fetch(corsProxy + targetUrl)
-    .then(response => response.json())
-    .then(data => { 
-      this.setState({
-        weather: data
-      })
-    })
-  }
-
   render() {
     let date = new Date();
-    console.log(this.state.weather)
     return (
       <div className="App">
         <Nav />
         <Period />
-        <Current city={this.props.city} state={this.props.state} weather={this.state.weather} />
+        <Current location={`${this.props.city}, ${this.props.state}`} weather={this.props.weather} />
         {/* Weather for next few days */}
         <Month date={date} />
-        <button onClick={ () => this.handleGeocode() }>Update For Me</button>
+        <button onClick={ () => this.handleUpdate() }>Update For Me</button>
       </div>
     );
   }

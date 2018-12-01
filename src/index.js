@@ -5,10 +5,10 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleWare from 'redux-thunk';
 import './index.css';
 import App from './App';
-import { translateLocation } from './reducers';
+import { translateLocation, handleWeather } from './reducers';
 import * as serviceWorker from './serviceWorker';
 
-const rootReducer = combineReducers({ translateLocation })
+const rootReducer = combineReducers({ translateLocation, handleWeather })
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleWare));
 
 ReactDOM.render(
