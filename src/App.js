@@ -29,7 +29,8 @@ class App extends Component {
     this.state = {
       geolocate: true,
       latitude: '40.754932',
-      longitude: '-73.984016'
+      longitude: '-73.984016',
+      route: 'home'
     }
   }
 
@@ -71,16 +72,20 @@ class App extends Component {
 
   render() {
     let date = new Date();
-    return (
-      <div className="App">
-        <Nav />
-        <Period />
-        <Current location={`${this.props.city}, ${this.props.state}`} weather={this.props.weather} />
-        {/* Weather for next few days */}
-        <Month date={date} />
-        <button onClick={ () => this.handleUpdate() }>Update For Me</button>
-      </div>
-    );
+    const { city, state, weather } = this.props;
+    const { route } = this.state;
+    if (route === 'home') {
+      return (
+        <div className="App">
+          <Nav />
+          <Period />
+          <Current location={`${city}, ${state}`} weather={weather} />
+          {/* Weather for next few days */}
+          <Month date={date} />
+          <button onClick={ () => this.handleUpdate() }>Update For Me</button>
+        </div>
+      )
+    }
   }
 }
 

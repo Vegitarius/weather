@@ -15,14 +15,16 @@ export default class Current extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.weather.currently) {
+    const { location } = nextProps;
+    const { currently, daily } = nextProps.weather
+    if (currently) {
       this.setState({
-        location: nextProps.location,
-        currentTemp: nextProps.weather.currently.temperature.toFixed(0),
-        currentSummary: nextProps.weather.currently.summary,
-        currentFeelsLike: nextProps.weather.currently.apparentTemperature.toFixed(0),
-        todayHigh: nextProps.weather.daily.data[0].temperatureHigh.toFixed(0),
-        todayLow: nextProps.weather.daily.data[0].temperatureLow.toFixed(0)
+        location: location,
+        currentTemp: currently.temperature.toFixed(0),
+        currentSummary: currently.summary,
+        currentFeelsLike: currently.apparentTemperature.toFixed(0),
+        todayHigh: daily.data[0].temperatureHigh.toFixed(0),
+        todayLow: daily.data[0].temperatureLow.toFixed(0)
       })
     }
   }
