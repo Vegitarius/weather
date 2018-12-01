@@ -72,17 +72,17 @@ class App extends Component {
 
   render() {
     let date = new Date();
-    const { city, state, weather } = this.props;
+    const { city, state } = this.props;
     const { route } = this.state;
     if (route === 'home') {
       return (
         <div className="App">
           <Nav />
           <Period />
-          <Current location={`${city}, ${state}`} weather={weather} />
+          <Current location={`${city}, ${state}`} latitude={this.state.latitude} longitude={this.state.longitude} />
           {/* Weather for next few days */}
           <Month date={date} />
-          <button onClick={ () => this.handleUpdate() }>Update For Me</button>
+          <button onClick={ () => this.handleUpdate() }>Update</button>
         </div>
       )
     }

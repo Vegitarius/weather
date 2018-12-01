@@ -1,39 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './Current.css';
 
-export default class Current extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {
-      location: '',
-      currentTemp: '',
-      currentSummary: '',
-      currentFeelsLike: '',
-      todayHigh: '',
-      todayLow: '',
-    }
+const mapStateToProps = state => {
+  return {
+    weatherPending: state.handleWeather.weatherPending,
+    weather: state.handleWeather.weather,
+    currentTemp: state.handleWeather.currentTemp,
+    currentSummary: state.handleWeather.currentSummary,
+    currentFeelsLike: state.handleWeather.currentFeelsLike,
+    todayHigh: state.handleWeather.todayHigh,
+    todayLow: state.handleWeather.todayLow
   }
+}
 
-  componentWillReceiveProps(nextProps) {
-    const { location } = nextProps;
-    const { currently, daily } = nextProps.weather
-    if (currently) {
-      this.setState({
-        location: location,
-        currentTemp: currently.temperature.toFixed(0),
-        currentSummary: currently.summary,
-        currentFeelsLike: currently.apparentTemperature.toFixed(0),
-        todayHigh: daily.data[0].temperatureHigh.toFixed(0),
-        todayLow: daily.data[0].temperatureLow.toFixed(0)
-      })
-    }
-  }
-
+class Current extends React.Component {
   render() {
+    console.log(this.props.location, this.props.weather);
+    const { location, currentTemp, 
+            currentSummary, currentFeelsLike,
+            todayHigh, todayLow } = this.props;
     return (
       <div id="current">
         <div id="location">
-          {this.state.location}
+          {location}
         </div>
         <div id="date" className="text-r">
           Today
@@ -43,19 +33,21 @@ export default class Current extends React.Component {
         </div>
         <div id="col1">
           <div id="current-temperature">
-            {this.state.currentTemp}&deg;
+            {currentTemp}&deg;
           </div>
           <div id="current-weather">
-            {this.state.currentSummary}
+            {currentSummary}
           </div>
           <div id="current-feels-like">
-            Feels Like: {this.state.currentFeelsLike}&deg;
+            Feels Like: {currentFeelsLike}&deg;
           </div>
           <div id="today-high-low">
-            Hi: {this.state.todayHigh}&deg; Low: {this.state.todayLow}&deg;
+            Hi: {todayHigh}&deg; Low: {todayLow}&deg;
           </div>
         </div>
       </div>
     )
   }
 }
+
+export default connect(mapStateToProps, null)(Current);

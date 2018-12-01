@@ -25,7 +25,7 @@ export const translateLocation = (state=initialStateLocation, action={}) => {
         geoPending: false
         })
     case TRANSLATE_LOCATION_FAILED:
-        return Object.assign({}, state, { error: action.payload,geoPending: false})
+        return Object.assign({}, state, { error: action.payload, geoPending: false})
     default:
     return state;
   }
@@ -33,6 +33,10 @@ export const translateLocation = (state=initialStateLocation, action={}) => {
 
 const initialStateWeather = {
   weather: {},
+  currentTemp: 0,
+  currentSummary: '0',
+  todayHigh: 0,
+  todayLow: 0,
   weatherPending: false
 }
 
@@ -41,7 +45,15 @@ export const handleWeather = (state=initialStateWeather, action={}) => {
     case WEATHER_FINDER_PENDING:
       return Object.assign({}, state, { weatherPending: true })
     case WEATHER_FINDER_SUCCESS:
-      return Object.assign({}, state, { weather: action.payload, weatherPending: false })
+      return Object.assign({}, state, { 
+        weather: action.payload, 
+        currentTemp: action.payload.currently.temperature.toFixed(0),
+        currentSummary: action.payload.currently.summary,
+        currentFeelsLike: action.payload.currently.apparentTemperature.toFixed(0),
+        todayHigh: action.payload.daily.data[0].temperatureHigh.toFixed(0),
+        todayLow: action.payload.daily.data[0].temperatureLow.toFixed(0),
+        weatherPending: false 
+      })
     case WEATHER_FINDER_FAILED:
       return Object.assign({}, state, { error: action.payload, weatherPending: false })
     default:
