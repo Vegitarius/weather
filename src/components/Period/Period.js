@@ -1,5 +1,6 @@
 import React from 'react';
 import './Period.css';
+import '../../style.css';
 
 const Period = (props) => {
   return (

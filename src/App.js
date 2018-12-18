@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import Current from './components/Current/Current';
+import Weekly from './components/Weekly/Weekly';
 import Month from './components/Month/Month';
 import Nav from './components/Nav/Nav';
 import Period from './components/Period/Period';
@@ -76,13 +77,19 @@ class App extends Component {
     const { route } = this.state;
     if (route === 'home') {
       return (
-        <div className="App">
+        <div id="app">
           <Nav />
           <Period />
           <Current location={`${city}, ${state}`} latitude={this.state.latitude} longitude={this.state.longitude} />
           {/* Weather for next few days */}
           <Month date={date} />
           <button onClick={ () => this.handleUpdate() }>Update</button>
+        </div>
+      )
+    } else if (route === 'weekly') {
+      return (
+        <div id="app">
+          <Weekly weather={this.props.weather} date={date}/>
         </div>
       )
     }

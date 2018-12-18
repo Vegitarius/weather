@@ -1,0 +1,13 @@
+.size-med {
+  font-size: 24px;
+}
+
+.flex-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-c {
+  text-align: center;
+}
