@@ -39,9 +39,15 @@ class App extends Component {
 
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.locateUser();
     this.props.handleWeather(this.state.latitude, this.state.longitude);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.latitude !== this.props.latitude) {
+      this.handleUpdate();
+    }
   }
 
   handleUpdate() {
@@ -91,7 +97,6 @@ class App extends Component {
           <Current location={`${city}, ${state}`} latitude={this.state.latitude} longitude={this.state.longitude} />
           {/* Weather for next few days */}
           <Month date={date} />
-          <button onClick={() => this.handleUpdate()}>Update</button>
         </div>
       )
     } else if (route === 'weekly') {
