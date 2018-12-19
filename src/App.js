@@ -15,7 +15,10 @@ const mapStateToProps = state => {
     city: state.translateLocation.city,
     state: state.translateLocation.state,
     weatherPending: state.handleWeather.weatherPending,
-    weather: state.handleWeather.weather
+    weather: state.handleWeather.weather,
+    latitude: state.getLatLong.latitude,
+    longitude: state.getLatLong.longitude,
+    location: state.translateLocation.location
   }
 }
 
@@ -33,6 +36,7 @@ class App extends Component {
       longitude: '-73.984016',
       route: 'home'
     }
+
   }
 
   componentWillMount() {
@@ -47,9 +51,13 @@ class App extends Component {
       // sends lat and long to api to return weather data for location
       this.props.handleWeather(this.state.latitude, this.state.longitude);
     }
-
+    if (this.props.latitude && this.props.longitude) {
+      // sends lat and long to geocode api that translates lat,long into location(city, state etc)
+      this.props.translateLocation(this.props.latitude, this.props.longitude);
+      // sends lat and long to api to return weather data for location
+      this.props.handleWeather(this.props.latitude, this.props.longitude);
+    }
   }
-
 
   locateUser() {
     let success = (position) => {
@@ -83,7 +91,7 @@ class App extends Component {
           <Current location={`${city}, ${state}`} latitude={this.state.latitude} longitude={this.state.longitude} />
           {/* Weather for next few days */}
           <Month date={date} />
-          <button onClick={ () => this.handleUpdate() }>Update</button>
+          <button onClick={() => this.handleUpdate()}>Update</button>
         </div>
       )
     } else if (route === 'weekly') {
