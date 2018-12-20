@@ -12,13 +12,12 @@ import { translateLocation, handleWeather } from './actions';
 const mapStateToProps = state => {
   return {
     geoPending: state.translateLocation.geoPending,
-    city: state.translateLocation.city,
-    state: state.translateLocation.state,
     weatherPending: state.handleWeather.weatherPending,
     weather: state.handleWeather.weather,
     latitude: state.getLatLong.latitude,
     longitude: state.getLatLong.longitude,
-    location: state.translateLocation.location
+    locArray: state.translateLocation.locArray,
+    country: state.translateLocation.country
   }
 }
 
@@ -36,7 +35,6 @@ class App extends Component {
       longitude: '-73.984016',
       route: 'home'
     }
-
   }
 
   componentDidMount() {
@@ -86,15 +84,16 @@ class App extends Component {
   }
 
   render() {
+    console.log('country:', this.props.country);
+    console.log(this.props.locArray)
     let date = new Date();
-    const { city, state } = this.props;
     const { route } = this.state;
     if (route === 'home') {
       return (
         <div id="app">
           <Nav />
           <Period />
-          <Current location={`${city}, ${state}`} latitude={this.state.latitude} longitude={this.state.longitude} />
+          <Current latitude={this.state.latitude} longitude={this.state.longitude} />
           {/* Weather for next few days */}
           <Month date={date} />
         </div>

@@ -1,3 +1,7 @@
+.text-r {
+  text-align: right;
+}
+
 #current {
   display: flex;
   flex-flow: row wrap;
@@ -38,7 +42,7 @@
 
 img {
   width: 180px;
-  height: 130px;
+  height: 180px;
 }
 
 #col1 {

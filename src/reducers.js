@@ -16,9 +16,9 @@ import {
 
 const initialStateLocation = {
   geoPending: false,
-  city: "Manhattan",
-  state: 'NY',
-  location: ''
+  location: "Manhattan, NY",
+  country: 'none',
+  locArray: null
 }
 
 export const translateLocation = (state=initialStateLocation, action={}) => {
@@ -26,23 +26,32 @@ export const translateLocation = (state=initialStateLocation, action={}) => {
     case TRANSLATE_LOCATION_PENDING:
       return Object.assign({}, state, { geoPending: true })
     case TRANSLATE_LOCATION_SUCCESS:
-      let results, city, states;
-      for (let i = 0; i < action.payload.results.length; i++) {
-        if (action.payload.results[i].types[0] === 'postal_code') {
-          results = action.payload.results[i].address_components
-        }
-      }
+      let results, location, country;
+      results = action.payload.results;
       for (let i = 0; i < results.length; i++) {
-        if (results[i].types[0] === 'locality') {
-          city = results[i].long_name
-        } else if (results[i].types[0] === 'administrative_area_level_1') {
-          states = results[i].short_name
+        if (results[i].types[0] === 'country') {
+          country = results[i].address_components[0].short_name
         }
-      }
+        if (country === 'US') {
+            for (let i = 0; i < results.length; i++) {
+              if (results[i].types[0] === 'locality') {
+                let x = results[i].formatted_address;
+                x = x.substring(0, x.length-5)
+                location = x
+              }
+            }
+          } else if (country !== 'US') {
+            for (let i = 0; i < results.length; i++) {
+              if (results[i].types[0] === 'administrative_area_level_1') {
+                location = results[i].formatted_address
+              }
+            }
+          }
+        }
       return Object.assign({}, state, { 
-        city: city,
-        state: states,
-        location: results,
+        location: location,
+        country: country,
+        locArray: results,
         geoPending: false
         })
     case TRANSLATE_LOCATION_FAILED:
@@ -55,7 +64,7 @@ export const translateLocation = (state=initialStateLocation, action={}) => {
 const initialStateWeather = {
   weather: null,
   currentTemp: null,
-  currentSummary: null,
+  currentIcon: null,
   todayHigh: null,
   todayLow: null,
   weatherPending: false
@@ -69,6 +78,7 @@ export const handleWeather = (state=initialStateWeather, action={}) => {
       return Object.assign({}, state, { 
         weather: action.payload, 
         currentTemp: action.payload.currently.temperature.toFixed(0),
+        currentIcon: action.payload.currently.icon,
         currentSummary: action.payload.currently.summary,
         currentFeelsLike: action.payload.currently.apparentTemperature.toFixed(0),
         todayHigh: action.payload.daily.data[0].temperatureHigh.toFixed(0),
