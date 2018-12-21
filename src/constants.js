@@ -13,3 +13,4 @@ export const WEATHER_FINDER_FAILED = 'WEATHER_FINDER_FAILED';
 export const corsProxy = "https://cors-anywhere.herokuapp.com/";
 export const CHANGE_ZIPCODE = 'CHANGE_ZIPCODE';
 export const GET_DATE = 'GET_DATE';
+export const FOCUS_CARD = 'FOCUS_CARD';

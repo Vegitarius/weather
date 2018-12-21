@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './Current.css';
+import findIcon from '../findIcon';
 
 const mapStateToProps = state => {
   return {
@@ -22,32 +23,7 @@ class Current extends React.Component {
     const { location, currentTemp, currentSummary,
             currentIcon, currentFeelsLike,
             todayHigh, todayLow } = this.props;
-    let weatherImg = <img src={require('../../assets/icon.png')} alt="cloudy-symbol" />;
-    if (currentIcon) {
-      switch (currentIcon.toLowerCase()) {
-        case 'clear-day':
-          console.log('clear-day')  
-          break;
-        case 'cloudy':
-          console.log('cloudy')
-          break;
-        case 'mostly-cloudy': 
-          console.log('mostly-cloudy');
-          weatherImg = <img src={require('../../assets/cloudy-sym.jpg')} alt="cloudy-symbol" />
-          break;
-        case 'clear-night':
-          console.log('clear-night');
-          weatherImg = <img src={require('../../assets/clear-night-sym.png')} alt="cloudy-symbol" />
-          break;
-        case 'partly-cloudy-night':
-          break;
-        case 'rain':
-          break;
-        default:
-          console.log(currentIcon)
-          break;
-      }
-    }
+    let weatherImg = findIcon(currentIcon)
     return (
       <div id="current">
         <div id="location">

@@ -10,9 +10,9 @@ import {
   WEATHER_FINDER_PENDING,
   WEATHER_FINDER_SUCCESS,
   WEATHER_FINDER_FAILED,
-  CHANGE_ZIPCODE
+  CHANGE_ZIPCODE,
+  FOCUS_CARD
 } from './constants';
-
 
 const initialStateLocation = {
   geoPending: false,
@@ -125,6 +125,21 @@ export const setZipcode = (state=initailStateZip, action={}) => {
     case CHANGE_ZIPCODE:
       return Object.assign({}, state, { zipcode: action.payload });
     default: 
+      return state;
+  }
+}
+
+const initialFocus = {
+  focusedCard: null
+}
+
+export const handleDOWFocus = (state=initialFocus, action={}) => {
+  switch(action.type) {
+    case FOCUS_CARD:
+      return (state.focusedCard
+                ? Object.assign({}, state, { focusedCard: null }) 
+                : Object.assign({}, state, { focusedCard: action.payload }));
+    default:
       return state;
   }
 }

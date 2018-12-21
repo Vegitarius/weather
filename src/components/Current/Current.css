@@ -8,8 +8,8 @@
   justify-content: center;
   align-items: center;
   background: lightblue;
-  width: 50vw;
-  height: auto;
+  width: 50%;
+  height: 50%;
   font-size: 24px;
   padding: 20px;
   border-radius: 15px;
@@ -29,10 +29,9 @@
 }
 
 #weather-img {
-  height: 100%;
-  margin-top: auto;
-  margin-bottom: auto;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .col2 {
@@ -41,8 +40,8 @@
 }
 
 #current img {
-  width: 180px;
-  height: 180px;
+  height: 150px;;
+  width: auto;
 }
 
 #col1 {
@@ -55,4 +54,14 @@
 #current-temperature {
   font-size: 50px;
   line-height: 60px;
+}
+
+@media screen and (max-width: 500px) {
+  #current {
+    width: 75%;
+  }
+
+  #current img {
+    height: 100px;
+  }
 }

@@ -12,7 +12,8 @@ import {
   WEATHER_FINDER_SUCCESS,
   WEATHER_FINDER_FAILED,
   corsProxy,
-  CHANGE_ZIPCODE
+  CHANGE_ZIPCODE,
+  FOCUS_CARD
 } from './constants';
 
 export const translateLocation = (lat, long) => (dispatch) => {
@@ -44,8 +45,14 @@ export const getLatLong = (zipcode) => (dispatch) => {
     .catch(error => dispatch({ type: GET_LATLONG_FAILED, payload: error }))
 }
 
-
 export const setZipcode = text => ({
   type: CHANGE_ZIPCODE,
   payload: text
 })
+
+export const handleDOW = (dow) => (dispatch) => {
+  dispatch({
+    type: FOCUS_CARD, 
+    payload: dow
+  })
+}

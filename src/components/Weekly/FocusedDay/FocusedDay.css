@@ -1,0 +1,6 @@
+#focused-day {
+  background:gray;
+  width: 20px;
+  height: 100%;
+  display: flex;
+}
