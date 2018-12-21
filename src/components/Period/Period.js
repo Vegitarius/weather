@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Period.css';
 import '../../style.css';
 
 const Period = (props) => {
   return (
-    <div id="period" className="flex-c text-c size-med">
-      <span>Weekly</span>
-      <span>Hourly</span>
-      <span>Current</span>
-      <span>Minutely</span>
-    </div>
+    <ul id="period" className="flex-c text-c size-med">
+      <li className='per-link'><Link className='per-nav' to='/week'>Weekly</Link></li>
+      <li className='per-link'><Link className='per-nav' to='/hour'>Hourly</Link></li>
+      <li className='per-link'><Link className='per-nav' to='/current'>Current</Link></li>
+      <li className='per-link'><Link className='per-nav' to='/minute'>Minutely</Link></li>
+    </ul>
   )
 }
 

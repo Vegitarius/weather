@@ -44,7 +44,7 @@ class Current extends React.Component {
         case 'rain':
           break;
         default:
-          console.log(this.props.currentIcon)
+          console.log(currentIcon)
           break;
       }
     }

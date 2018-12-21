@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import './App.css';
-import Current from './components/Current/Current';
-import Weekly from './components/Weekly/Weekly';
-import Month from './components/Month/Month';
 import Nav from './components/Nav/Nav';
 import Period from './components/Period/Period';
+import Routes from './Routes';
 
 import { translateLocation, handleWeather } from './actions';
 
@@ -23,7 +22,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => ({
   translateLocation: (lat, long) => dispatch(translateLocation(lat, long)),
-  handleWeather: (lat, long) => dispatch(handleWeather(lat, long))
+  handleWeather: (lat, long) => dispatch(handleWeather(lat, long)),
 })
 
 class App extends Component {
@@ -84,28 +83,17 @@ class App extends Component {
   }
 
   render() {
-    console.log('country:', this.props.country);
-    console.log(this.props.locArray)
-    let date = new Date();
-    const { route } = this.state;
-    if (route === 'home') {
-      return (
-        <div id="app">
-          <Nav />
-          <Period />
-          <Current latitude={this.state.latitude} longitude={this.state.longitude} />
-          {/* Weather for next few days */}
-          <Month date={date} />
-        </div>
-      )
-    } else if (route === 'weekly') {
-      return (
-        <div id="app">
-          <Weekly weather={this.props.weather} date={date}/>
-        </div>
-      )
+    const childProps = {
+      weather: this.props.weather
     }
+    return (
+      <div>
+        <Nav />
+        <Period />
+        <Routes childProps={childProps} /> 
+      </div>
+    )
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));
