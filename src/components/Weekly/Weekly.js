@@ -31,6 +31,7 @@ class Weekly extends Component {
             dowNum={i}
             icon={dayWeather.icon}
             DOW={DOW[today+i]}
+            summary={dayWeather.summary}
             high={dayWeather.temperatureHigh.toFixed(0)}
             low={dayWeather.temperatureLow.toFixed(0)}
           />

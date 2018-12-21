@@ -3,11 +3,13 @@
   flex-direction: row;
   align-items: center;
   cursor: pointer;
+  width: 100%;
 }
 
 .weekday h3 {
   font-size: 28px;
   padding: 0;
+  width: 25%;
 }
 
 .wkdy-weather {
@@ -17,6 +19,34 @@
 }
 
 .weekday img {
-  height: 80%;
+  height: 50px;
   width: auto;
+}
+
+@media screen and (max-width: 500px) {
+  .weekday {
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .weekday h3 {
+    font-size: 16px;
+    width: auto;
+  }
+
+  .wkdy-summ {
+    font-size: 13px;
+    margin-left: 5px;
+    margin-right: auto;
+  }
+
+  .wkdy-weather {
+    font-size: 14px;
+    margin-left: auto;
+    margin-right: 5px;
+  }
+
+  .weekday img {
+    height: 30px;
+  }
 }

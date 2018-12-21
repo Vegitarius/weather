@@ -1,17 +1,56 @@
 nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   background: lightblue;
-  height: 7%;
+  height: 10%;
+  width: 100%;
 }
 
+#nav-top {
+  display: flex;
+  align-items: center;
+}
 
 nav img {
   height: 50px;
   width: 50px;
 }
 
+nav input, nav button, nav a {
+  font-size: 24px;
+}
+
 nav a {
+  margin-top: auto;
+  margin-bottom: auto;
   color: inherit;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  nav {
+    flex-direction: column;
+    width: 100%;
+    align-items: space-between;
+  }
+ 
+  nav input, nav button {
+    font-size: 18px;
+  }
+
+  nav img, #nav-top-r {
+    order: 1;
+  }
+
+  #nav-top-r {
+    margin-left: auto;
+    margin-right: 10px;
+  }
+
+  nav a {
+    font-size: 18px;
+    order: 2;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }

@@ -22,11 +22,15 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className="size-med">
-        <img src={require("../../assets/icon.png")} alt="icon"/>
+      <nav>
+        <div id='nav-top'>
+          <img src={require("../../assets/icon.png")} alt="icon"/>
+          <div id='nav-top-r'>
+            <input placeholder="Zipcode" onChange={this.props.setZipcode} />
+            <button onClick={() => this.handleZipSubmit()}>Submit</button>
+          </div>
+        </div>
         <a href="https://darksky.net/poweredby/">Powered by Dark Sky</a>
-        <input className="size-med" placeholder="Zipcode" onChange={this.props.setZipcode} />
-        <button onClick={() => this.handleZipSubmit()}>Submit</button>
       </nav>
     )
   }

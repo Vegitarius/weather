@@ -1,16 +1,29 @@
 #weekly-weather {
   display: flex;
   flex-direction: column;
-  height: 86%;
+  height: 83%;
   background: gray;
 }
 
 #weekly-weather span {
-  height: 15%;
+  height: auto;
+}
+
+#weekly-weather span > * {
+  margin: 0;
+  padding: 5px;
+}
+
+#weekly-weather span h2 {
+  font-size: 36px;
+}
+
+#weekly-weather span p {
+  font-size: 18px;
 }
 
 #weekly-dow {
-  height: 85%;
+  height: 100%;
   background: lightgreen;
   display: flex;
   flex-direction: column;
@@ -20,4 +33,26 @@
   background: lightgray;
   margin-bottom: 5px;
   flex: 1;
+}
+
+@media screen and (max-width: 500px) {
+  #weekly-weather {
+
+  }
+
+  #weekly-weather span {
+
+  }
+
+  #weekly-weather span h2 {
+    font-size: 28px;
+  }
+  
+  #weekly-dow {
+
+  }
+
+  #weekly-dow > * {
+
+  }
 }
