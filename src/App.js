@@ -87,7 +87,7 @@ class App extends Component {
       weather: this.props.weather
     }
     return (
-      <div>
+      <div id='main-page'>
         <Nav />
         <Period />
         <Routes childProps={childProps} /> 
