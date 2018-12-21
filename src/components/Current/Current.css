@@ -9,17 +9,17 @@
   align-items: center;
   background: lightblue;
   width: 50%;
-  height: 50%;
   font-size: 24px;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 10px 10px 30px gray;
+  margin: 10px auto 0 auto;
 }
 
 #location {
   flex: 1 50%;
   order: 1;
-  font-size: 30px;
+  font-size: 36px;
   text-align: start;
 }
 
@@ -40,8 +40,8 @@
 }
 
 #current img {
-  height: 150px;;
-  width: auto;
+  width: 100%;
+  height: auto;
 }
 
 #col1 {
@@ -52,16 +52,30 @@
 }
 
 #current-temperature {
-  font-size: 50px;
-  line-height: 60px;
+  font-size: 70px;
+  line-height: 90px;
+}
+
+#current-weather {
+
+}
+
+#current-feels-like {
+
+}
+
+#today-high-low {
+
 }
 
 @media screen and (max-width: 500px) {
   #current {
     width: 75%;
+    font-size: 18px;
+    height: auto;
   }
 
-  #current img {
-    height: 100px;
+  #location {
+    font-size: 24px;
   }
 }
