@@ -39,16 +39,8 @@ class Weekly extends Component {
       }}
     }
     if (focusedCard || focusedCard === 0) {
-      let dayWeather = weather.daily.data[focusedCard];
-      let today = focusedCard - 2;
-      if (today < 0 ) today = today + 7;
       days = 
-        <FocusedDay 
-          key={focusedCard}
-          icon={dayWeather.icon}
-          DOW={DOW[today]}
-          weather={dayWeather}
-      />   
+        <FocusedDay />   
     }
     return (
       <div id="weekly-weather">

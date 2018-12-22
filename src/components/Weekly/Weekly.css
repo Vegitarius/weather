@@ -1,8 +1,8 @@
 #weekly-weather {
   display: flex;
   flex-direction: column;
-  height: 83%;
-  background: gray;
+  min-height: 83%;
+  width: 100%;
 }
 
 #weekly-weather span {
@@ -23,16 +23,14 @@
 }
 
 #weekly-dow {
-  height: 100%;
-  background: lightgreen;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 #weekly-dow > * {
   background: lightgray;
-  margin-bottom: 5px;
-  flex: 1;
+  flex: 1 1;
 }
 
 @media screen and (max-width: 500px) {
@@ -49,7 +47,6 @@
   }
   
   #weekly-dow {
-
   }
 
   #weekly-dow > * {

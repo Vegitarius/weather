@@ -129,11 +129,7 @@ export const setZipcode = (state=initailStateZip, action={}) => {
   }
 }
 
-const initialFocus = {
-  focusedCard: null
-}
-
-export const handleDOWFocus = (state=initialFocus, action={}) => {
+export const handleDOWFocus = (state={ focusedCard: null}, action={}) => {
   switch(action.type) {
     case FOCUS_CARD:
       return (state.focusedCard

@@ -10,13 +10,12 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Day extends Component {
   render() {
-    const { icon, high, low, summary } = this.props;
+    const { icon, high, low } = this.props;
     let dayIcon = findIcon(icon)
     return(
       <div className='weekday' onClick={(key) => this.props.handleDOWUpdate(this.props.dowNum)}>
         {dayIcon}
         <h3>{this.props.DOW}</h3>
-        <p className='wkdy-summ'>{summary}</p>
         <p className='wkdy-weather'>{high}&deg; / {low}&deg;</p>
       </div>
     )

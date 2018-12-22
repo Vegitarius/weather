@@ -32,6 +32,9 @@ const findIcon = (icon) => {
       case 'partly-cloudy-night':
         dayIcon = <img src={require('../assets/partly-cloudy-night-sym.ico')} alt="partly cloudy night symbol" />
         break;
+      case 'fog':
+        dayIcon = <img src={require('../assets/fog-night-sym.png')} alt="foggy symbol" />
+        break
       default:
         console.log(icon)
         break;

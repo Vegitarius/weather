@@ -8,8 +8,7 @@ import Routes from './Routes';
 
 import { translateLocation, handleWeather } from './actions';
 
-const mapStateToProps = state => {
-  return {
+const mapStateToProps = state => ({
     geoPending: state.translateLocation.geoPending,
     weatherPending: state.handleWeather.weatherPending,
     weather: state.handleWeather.weather,
@@ -17,8 +16,7 @@ const mapStateToProps = state => {
     longitude: state.getLatLong.longitude,
     locArray: state.translateLocation.locArray,
     country: state.translateLocation.country
-  }
-}
+})
 
 const mapDispatchToProps = (dispatch) => ({
   translateLocation: (lat, long) => dispatch(translateLocation(lat, long)),
