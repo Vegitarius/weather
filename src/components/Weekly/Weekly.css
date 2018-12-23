@@ -1,12 +1,14 @@
 #weekly-weather {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   min-height: 83%;
   width: 100%;
 }
 
 #weekly-weather span {
   height: auto;
+  align-self: center;
 }
 
 #weekly-weather span > * {
@@ -16,6 +18,7 @@
 
 #weekly-weather span h2 {
   font-size: 36px;
+  text-decoration: underline;
 }
 
 #weekly-weather span p {
@@ -29,8 +32,9 @@
 }
 
 #weekly-dow > * {
-  background: lightgray;
+  background: lightblue;
   flex: 1 1;
+  box-shadow: 5px 5px 5px lightgray;
 }
 
 @media screen and (max-width: 500px) {

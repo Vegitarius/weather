@@ -4,6 +4,13 @@
   border-radius: 10px;
   margin: 5px;
   width: 50%;
+  transition: all .3s ease;
+  align-self: center;
+  padding: 0 15px 0 15px;
+}
+
+#focused-day:hover {
+  transform: scale(1.1);
 }
 
 #focused-img {
@@ -60,6 +67,6 @@
 
 @media screen and (max-width: 500px) {
   #focused-day {
-    width: 100%;
+    width: 90%;
   }
 }

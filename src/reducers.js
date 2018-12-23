@@ -116,7 +116,7 @@ export const getLatLong = (state=initialStateLatLong, action={}) => {
 }
 
 const initailStateZip = {
-  zipcode: null,
+  zipcode: 10276,
   date: new Date()
 }
 

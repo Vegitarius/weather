@@ -15,9 +15,7 @@ class Weekly extends Component {
   render() {
     const { weather, location, focusedCard } = this.props;
     console.log(weather)
-    const DOW = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     let days = [], summary;
-
     if (this.props.date) {
       let today = this.props.date.getDay();
       if (weather) {
@@ -29,11 +27,7 @@ class Weekly extends Component {
           <Day 
             key={i}
             dowNum={i}
-            icon={dayWeather.icon}
-            DOW={DOW[today+i]}
-            summary={dayWeather.summary}
-            high={dayWeather.temperatureHigh.toFixed(0)}
-            low={dayWeather.temperatureLow.toFixed(0)}
+            weather={dayWeather}
           />
         )
       }}

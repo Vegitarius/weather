@@ -72,7 +72,7 @@ class FocusedDay extends Component {
       <div id="focused-day" onClick={(key) => handleDOWUpdate(dowNum)}>
         <div id='focused-img'>{iconImg}</div>
         <div id='focused-top-right'>
-          <h1>{DOW[date.getDay()+1]}</h1>
+          <h1>{DOW[date.getDay()]}</h1>
           <h2>{dayWeather.summary}</h2>
           <h2 className='sun-period'>
             <img src={require('../../../assets/clear-day-sym.png')} alt="clear day symbol" />
@@ -86,9 +86,9 @@ class FocusedDay extends Component {
         </div>
         <div id="focused-bottom-left">
           <h2>High: {dayWeather.temperatureHigh.toFixed(0)}&deg;</h2>
-          <h2>   Feels Like: {dayWeather.apparentTemperatureHigh.toFixed(0)}&deg;</h2>
+          <h2>Feels Like: {dayWeather.apparentTemperatureHigh.toFixed(0)}&deg;</h2>
           <h2>Low: {dayWeather.temperatureLow.toFixed(0)}&deg;</h2>
-          <h2>   Feels Like: {dayWeather.apparentTemperatureLow.toFixed(0)}&deg;</h2>
+          <h2>Feels Like: {dayWeather.apparentTemperatureLow.toFixed(0)}&deg;</h2>
         </div>
         <div id="focused-bottom-left">
         <h2>Wind Speed: {dayWeather.windSpeed.toFixed(2)} MPH</h2>

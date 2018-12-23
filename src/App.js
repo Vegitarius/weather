@@ -6,7 +6,7 @@ import Nav from './components/Nav/Nav';
 import Period from './components/Period/Period';
 import Routes from './Routes';
 
-import { translateLocation, handleWeather } from './actions';
+import { translateLocation, handleWeather, getLatLong } from './actions';
 
 const mapStateToProps = state => ({
     geoPending: state.translateLocation.geoPending,
@@ -15,12 +15,14 @@ const mapStateToProps = state => ({
     latitude: state.getLatLong.latitude,
     longitude: state.getLatLong.longitude,
     locArray: state.translateLocation.locArray,
-    country: state.translateLocation.country
+    country: state.translateLocation.country,
+    zipcode: state.setZipcode.zipcode
 })
 
 const mapDispatchToProps = (dispatch) => ({
   translateLocation: (lat, long) => dispatch(translateLocation(lat, long)),
   handleWeather: (lat, long) => dispatch(handleWeather(lat, long)),
+  getLatLong: (zipcode) => dispatch(getLatLong(zipcode))
 })
 
 class App extends Component {
@@ -28,15 +30,13 @@ class App extends Component {
     super();
     this.state = {
       geolocate: true,
-      latitude: '40.754932',
-      longitude: '-73.984016',
       route: 'home'
     }
   }
 
   componentDidMount() {
     this.locateUser();
-    this.props.handleWeather(this.state.latitude, this.state.longitude);
+    this.props.getLatLong(this.props.zipcode)
   }
 
   componentDidUpdate(prevProps) {
@@ -46,12 +46,6 @@ class App extends Component {
   }
 
   handleUpdate() {
-    if (this.state.latitude && this.state.longitude) {
-      // sends lat and long to geocode api that translates lat,long into location(city, state etc)
-      this.props.translateLocation(this.state.latitude, this.state.longitude);
-      // sends lat and long to api to return weather data for location
-      this.props.handleWeather(this.state.latitude, this.state.longitude);
-    }
     if (this.props.latitude && this.props.longitude) {
       // sends lat and long to geocode api that translates lat,long into location(city, state etc)
       this.props.translateLocation(this.props.latitude, this.props.longitude);
