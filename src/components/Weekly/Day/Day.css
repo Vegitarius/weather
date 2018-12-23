@@ -11,7 +11,7 @@
 }
 
 .weekday:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 .weekday h3 {
@@ -21,15 +21,19 @@
   margin-left: 15px;
 }
 
+.wkdy-summary {
+  width: 40%;
+}
+
 .wkdy-weather {
   font-size: 24px;
   margin-left: auto;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .weekday img {
   height: 75px;
-  width: auto;
+  width: 75px;
 }
 
 @media screen and (max-width: 1366px) {
@@ -40,7 +44,7 @@
 
 @media screen and (max-width: 750px) {
   .wkdy-summary {
-    visibility: hidden;
+    display: none;
   }
 }
 
@@ -50,7 +54,8 @@
   }
 
   .weekday img {
-    height: 30px;
+    height: 50px;
+    width: 50px;
   }
 
   .weekday h3 {

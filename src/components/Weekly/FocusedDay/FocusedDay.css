@@ -65,8 +65,15 @@
   }
 }
 
+@media screen and (max-width: 900px) {
+  #focused-day {}
+}
+
 @media screen and (max-width: 500px) {
   #focused-day {
     width: 90%;
+  }
+  #focused-day:hover {
+    transform: scale(1);
   }
 }

@@ -26,6 +26,19 @@ nav a {
   margin-right: 20px;
 }
 
+@media screen and (max-width: 700px) {
+  nav input, nav button, nav a {
+    font-size: 16px;
+  }
+  nav input  {
+    width: 70%;
+  }
+
+  nav button {
+    width: 25%;
+  }
+}
+
 @media screen and (max-width: 500px) {
   nav {
     flex-direction: column;
