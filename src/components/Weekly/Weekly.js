@@ -14,7 +14,6 @@ const mapStateToProps = state => ({
 class Weekly extends Component {
   render() {
     const { weather, location, focusedCard } = this.props;
-    console.log(weather)
     let days = [], summary;
     if (this.props.date) {
       let today = this.props.date.getDay();

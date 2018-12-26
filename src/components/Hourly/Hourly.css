@@ -1,0 +1,10 @@
+#hourly-weather {
+  display: flex;
+  flex-direction: column;
+}
+
+#hourly-hour {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
