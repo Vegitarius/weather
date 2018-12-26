@@ -1,0 +1,10 @@
+#minutely-weather {
+  display: flex;
+  flex-direction: column;
+}
+
+#minutes-container {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
