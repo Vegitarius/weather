@@ -65,37 +65,37 @@ class FocusedDay extends Component {
     let sunDown = this.handleSun(new Date(dayWeather.sunsetTime*1000).getHours(), new Date(dayWeather.sunsetTime*1000).getMinutes())
 
     let precip = dayWeather.precipProbability
-    ? <h2>Precipitation: {(dayWeather.precipProbability*100).toFixed(0)}% chance of {dayWeather.precipType} at {this.handleAmpm(new Date(dayWeather.precipIntensityMaxTime*1000).getHours())}</h2>
-    : <h2>No Precipitation</h2>
+    ? <p>Precipitation: {(dayWeather.precipProbability*100).toFixed(0)}% chance of {dayWeather.precipType} at {this.handleAmpm(new Date(dayWeather.precipIntensityMaxTime*1000).getHours())}</p>
+    : <p>No Precipitation</p>
 
     return (
       <div id="focused-day" onClick={(key) => handleDOWUpdate(dowNum)}>
         <div id='focused-img'>{iconImg}</div>
         <div id='focused-top-right'>
           <h1>{DOW[date.getDay()]}</h1>
-          <h2>{dayWeather.summary}</h2>
-          <h2 className='sun-period'>
+          <p>{dayWeather.summary}</p>
+          <p className='sun-period'>
             <img src={require('../../../assets/clear-day-sym.png')} alt="clear day symbol" />
             {sunUp} - {sunDown}
             <img src={require('../../../assets/clear-night-sym.png')} alt="clear-night-symbol" />
-          </h2>
+          </p>
         </div>
         <div id='focused-center'>
-          <h2>As low as {dayWeather.temperatureMin.toFixed(0)}&deg; at {tempMinTime} and up to {dayWeather.temperatureMax.toFixed(0)}&deg; at {tempMaxTime}</h2>
+          <p>As low as {dayWeather.temperatureMin.toFixed(0)}&deg; at {tempMinTime} and up to {dayWeather.temperatureMax.toFixed(0)}&deg; at {tempMaxTime}</p>
           {precip}
         </div>
         <div id="focused-bottom-left">
-          <h2>High: {dayWeather.temperatureHigh.toFixed(0)}&deg;</h2>
-          <h2>Feels Like: {dayWeather.apparentTemperatureHigh.toFixed(0)}&deg;</h2>
-          <h2>Low: {dayWeather.temperatureLow.toFixed(0)}&deg;</h2>
-          <h2>Feels Like: {dayWeather.apparentTemperatureLow.toFixed(0)}&deg;</h2>
+          <p>High: {dayWeather.temperatureHigh.toFixed(0)}&deg;</p>
+          <p>Feels Like: {dayWeather.apparentTemperatureHigh.toFixed(0)}&deg;</p>
+          <p>Low: {dayWeather.temperatureLow.toFixed(0)}&deg;</p>
+          <p>Feels Like: {dayWeather.apparentTemperatureLow.toFixed(0)}&deg;</p>
         </div>
         <div id="focused-bottom-left">
-        <h2>Wind Speed: {dayWeather.windSpeed.toFixed(2)} MPH</h2>
-          <h2>Gust Speed: {dayWeather.windGust.toFixed(0)} MPH</h2>
-          <h2>Visibility: {dayWeather.visibility}mi</h2>
-          <h2>UV Index: {dayWeather.uvIndex}</h2>
-          <h2>Humidity: {dayWeather.humidity*100}%</h2>
+          <p>Wind Speed: {dayWeather.windSpeed.toFixed(2)} MPH</p>
+          <p>Gust Speed: {dayWeather.windGust.toFixed(0)} MPH</p>
+          <p>Visibility: {dayWeather.visibility}mi</p>
+          <p>UV Index: {dayWeather.uvIndex}</p>
+          <p>Humidity: {dayWeather.humidity*100}%</p>
         </div>
       </div>
     )

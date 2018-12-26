@@ -10,6 +10,11 @@ import {
   WEATHER_FINDER_PENDING,
   WEATHER_FINDER_SUCCESS,
   WEATHER_FINDER_FAILED,
+
+  LOCATE_USER_PENDING,
+  LOCATE_USER_SUCCESS,
+  LOCATE_USER_FAILED,
+
   CHANGE_ZIPCODE,
   FOCUS_CARD
 } from './constants';
@@ -34,9 +39,9 @@ export const translateLocation = (state=initialStateLocation, action={}) => {
         }
         if (country === 'US') {
             for (let i = 0; i < results.length; i++) {
-              if (results[i].types[0] === 'locality') {
+              if (results[i].types[0] === 'postal_code') {
                 let x = results[i].formatted_address;
-                x = x.substring(0, x.length-5)
+                x = x.substring(0, x.length-11)
                 location = x
               }
             }
@@ -110,6 +115,29 @@ export const getLatLong = (state=initialStateLatLong, action={}) => {
       })
     case GET_LATLONG_FAILED:
       return Object.assign({}, state, { error: action.payload, latLongPending: false })
+    default:
+      return state;
+  }
+}
+
+const initialLocation = {
+  locateUserPending: false,
+  latitude: '40.754932',
+  longitude: '-73.984016'
+}
+
+export const locateUser = (state=initialLocation, action={}) => {
+  switch(action.type) {
+    case LOCATE_USER_PENDING:
+      return Object.assign({}, state, { locateUserPending: true });
+    case LOCATE_USER_SUCCESS:
+      return Object.assign({}, state, {
+        latitude: String(action.payload.coords.latitude),
+        longitude: String(action.payload.coords.longitude),
+        locateUserPending: false
+      })
+    case LOCATE_USER_FAILED:
+      return Object.assign({}, state, { error: action.payload, locateUserPending: false})
     default:
       return state;
   }

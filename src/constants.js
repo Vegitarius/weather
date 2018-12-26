@@ -10,6 +10,11 @@ export const WEATHER_FINDER_PENDING = 'WEATHER_FINDER_PENDING';
 export const WEATHER_FINDER_SUCCESS = 'WEATHER_FINDER_SUCCESS';
 export const WEATHER_FINDER_FAILED = 'WEATHER_FINDER_FAILED';
 
+export const LOCATE_USER_PENDING = 'LOCATE_USER_PENDING';
+export const LOCATE_USER_SUCCESS = 'LOCATE_USER_SUCCESS';
+export const LOCATE_USER_FAILED = 'LOCATE_USER_FAILED';
+
+
 export const corsProxy = "https://cors-anywhere.herokuapp.com/";
 export const CHANGE_ZIPCODE = 'CHANGE_ZIPCODE';
 export const GET_DATE = 'GET_DATE';

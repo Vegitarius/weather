@@ -13,6 +13,10 @@
   transform: scale(1.1);
 }
 
+#focused-day p {
+  font-size: 24px;
+}
+
 #focused-img {
   flex: 1 45%;;
   display: flex;
@@ -73,7 +77,16 @@
   #focused-day {
     width: 90%;
   }
+
   #focused-day:hover {
     transform: scale(1);
+  }
+
+  #focused-day p {
+    font-size: 18px;
+  }
+
+  #focused-day h1 {
+    text-align: center;
   }
 }

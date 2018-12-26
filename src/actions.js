@@ -11,6 +11,10 @@ import {
   WEATHER_FINDER_PENDING,
   WEATHER_FINDER_SUCCESS,
   WEATHER_FINDER_FAILED,
+  LOCATE_USER_PENDING,
+  LOCATE_USER_SUCCESS,
+  LOCATE_USER_FAILED,
+
   corsProxy,
   CHANGE_ZIPCODE,
   FOCUS_CARD
@@ -43,6 +47,24 @@ export const getLatLong = (zipcode) => (dispatch) => {
     .then(response => response.json())
     .then(data => dispatch({ type: GET_LATLONG_SUCCESS, payload: data }))
     .catch(error => dispatch({ type: GET_LATLONG_FAILED, payload: error }))
+}
+
+export const locateUser = () => (dispatch) => {
+  dispatch({ type: LOCATE_USER_PENDING });
+  let success = (data) => {
+    dispatch({ type: LOCATE_USER_SUCCESS, payload: data })
+  }
+  let error = (data) => {
+    dispatch({ type: LOCATE_USER_FAILED, payload: data })
+  }
+  if (navigator.geolocation.getCurrentPosition) {
+    navigator.geolocation.getCurrentPosition(success, error);
+  } else {
+    dispatch({
+      // needs alert to user to manually input location if no browser support or declined
+      type: LOCATE_USER_FAILED
+    })
+  }
 }
 
 export const setZipcode = text => ({
