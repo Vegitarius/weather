@@ -8,7 +8,7 @@
   justify-content: center;
   align-items: center;
   background: lightblue;
-  width: 50%;
+  width: 33%;
   font-size: 24px;
   padding: 20px;
   border-radius: 15px;
@@ -68,7 +68,14 @@
 
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1080px) {
+  #current {
+    width: 50%;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
   #current {
     width: 75%;
     font-size: 18px;

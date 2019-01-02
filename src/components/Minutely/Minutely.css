@@ -5,6 +5,5 @@
 
 #minutes-container {
   display: flex;
-  flex-direction: column;
-  width: 75%;
+   flex-direction: column;
 }
