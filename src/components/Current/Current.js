@@ -18,16 +18,30 @@ const mapStateToProps = state => {
 }
 
 class Current extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      location: 'Manhattan, NY'
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.location && nextProps.location !== prevState.location) {
+      return({ location: nextProps.location })
+    } else return prevState
+  }
+
   render() {
     console.log(this.props.location, this.props.weather);
-    const { location, currentTemp, currentSummary,
+    const { currentTemp, currentSummary,
             currentIcon, currentFeelsLike,
             todayHigh, todayLow } = this.props;
     let weatherImg = findIcon(currentIcon)
     return (
       <div id="current">
         <div id="location">
-          {location}
+          {this.state.location}
         </div>
         <div id="date" className="text-r">
           Currently
