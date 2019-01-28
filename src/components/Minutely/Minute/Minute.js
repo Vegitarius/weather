@@ -32,7 +32,9 @@ class Minute extends Component {
     return (
       <div className='minute'>
         <p>{this.getTime(hour, minutes)}</p>
-        <p>{(weather.precipProbability * 100).toFixed()}% chance of {weather.precipType || 'none'}</p>
+        {weather.precipProbability === 0
+          ? <p>No Precipitation</p>
+          : <p>{(weather.precipProbability * 100).toFixed()}% chance of {weather.precipType || 'none'}</p>}
       </div>
     )
   }
