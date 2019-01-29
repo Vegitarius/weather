@@ -29,7 +29,7 @@ class Current extends React.Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.location && nextProps.location !== prevState.location) {
       return({ location: nextProps.location })
-    } else return prevState
+    } else return null;
   }
 
   render() {

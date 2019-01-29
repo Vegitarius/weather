@@ -48,7 +48,7 @@ class FocusedDay extends Component {
       default:
         break;
     }
-    return hours + ':' + minute + ' ' + suffix;
+    return hours + ':' + (minute < 10 ? '0' + minute : minute) + ' ' + suffix;
   }
   render() {
     const { weather, handleDOWUpdate, dowNum, focusedCard } = this.props;
