@@ -18,14 +18,12 @@
 
 #location {
   flex: 1 50%;
-  order: 1;
   font-size: 36px;
   text-align: start;
 }
 
 #date {
   flex: 1 25%;
-  order: 2;
 }
 
 #weather-img {
@@ -34,8 +32,11 @@
   align-items: center;
 }
 
+#weather-wrapper{
+  display: flex;
+}
+
 .col2 {
-  order: 3;
   flex: 1 50%;
 }
 
@@ -46,7 +47,6 @@
 
 #col1 {
   flex: 1 50%;
-  order: 4;
   text-align: end;
   line-height: 42px;
 }

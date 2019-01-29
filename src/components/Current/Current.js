@@ -46,23 +46,27 @@ class Current extends React.Component {
         <div id="date" className="text-r">
           Currently
         </div>
-        <div id="weather-img"  className="col2">
+        {this.props.weatherPending 
+        ? <h3>Weather Information loading...</h3>
+        : <div id='weather-wrapper'>
+          <div id="weather-img"  className="col2">
           {weatherImg}
         </div>
-        <div id="col1">
-          <div id="current-temperature">
-            {currentTemp}&deg;
-          </div>
-          <div id="current-weather">
-            {currentSummary}
-          </div>
-          <div id="current-feels-like">
-            Feels Like: {currentFeelsLike}&deg;
-          </div>
-          <div id="today-high-low">
-            Hi: {todayHigh}&deg; Low: {todayLow}&deg;
-          </div>
-        </div>
+          <div id="col1">
+            <div id="current-temperature">
+              {currentTemp}&deg;
+            </div>
+            <div id="current-weather">
+              {currentSummary}
+            </div>
+            <div id="current-feels-like">
+              Feels Like: {currentFeelsLike}&deg;
+            </div>
+            <div id="today-high-low">
+              Hi: {todayHigh}&deg; Low: {todayLow}&deg;
+            </div>
+            </div>
+          </div>}
       </div>
     )
   }
