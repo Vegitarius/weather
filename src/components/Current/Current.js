@@ -26,27 +26,21 @@ class Current extends React.Component {
     }
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.location && nextProps.location !== prevState.location) {
-      return({ location: nextProps.location })
-    } else return null;
-  }
-
   render() {
-    console.log(this.props.location, this.props.weather);
-    const { currentTemp, currentSummary,
+    // console.log(this.props.location, this.props.weather);
+    const { location, currentTemp, currentSummary,
             currentIcon, currentFeelsLike,
-            todayHigh, todayLow } = this.props;
+            todayHigh, todayLow, weatherPending } = this.props;
     let weatherImg = findIcon(currentIcon)
     return (
       <div id="current">
         <div id="location">
-          {this.state.location}
+          {location}
         </div>
         <div id="date" className="text-r">
           Currently
         </div>
-        {this.props.weatherPending 
+        {weatherPending 
         ? <h3>Weather Information loading...</h3>
         : <div id='weather-wrapper'>
           <div id="weather-img"  className="col2">

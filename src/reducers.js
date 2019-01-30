@@ -145,13 +145,14 @@ export const locateUser = (state=initialLocation, action={}) => {
 
 const initailStateZip = {
   zipcode: 10276,
-  date: new Date()
+  date: new Date(),
+  zcTakeover: false
 }
 
 export const setZipcode = (state=initailStateZip, action={}) => {
   switch(action.type) {
     case CHANGE_ZIPCODE:
-      return Object.assign({}, state, { zipcode: action.payload });
+      return Object.assign({}, state, { zipcode: action.payload, zcTakeover: true });
     default: 
       return state;
   }

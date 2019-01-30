@@ -34,6 +34,7 @@
 
 #weather-wrapper{
   display: flex;
+  flex: 1 100%;
 }
 
 .col2 {

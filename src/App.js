@@ -18,7 +18,8 @@ const mapStateToProps = state => ({
     long2: state.locateUser.longitude,
     locArray: state.translateLocation.locArray,
     country: state.translateLocation.country,
-    zipcode: state.setZipcode.zipcode
+    zipcode: state.setZipcode.zipcode,
+    zcTakeover: state.setZipcode.zcTakeover
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -36,9 +37,9 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    this.props.getLatLong(this.props.zipcode);
-    this.props.locateUser();
+  async componentDidMount() {
+    await this.props.locateUser();
+    await this.props.getLatLong(this.props.zipcode);
   }
 
   componentDidUpdate(prevProps) {
@@ -54,8 +55,8 @@ class App extends Component {
       this.props.translateLocation(this.props.latitude, this.props.longitude);
       // sends lat and long to api to return weather data for location
       this.props.handleWeather(this.props.latitude, this.props.longitude);
-    }
-    if (this.props.lat2 && this.props.long2) {
+    } 
+    if (this.props.lat2 && this.props.long2 && !this.props.zcTakeover) {
       // sends lat and long to geocode api that translates lat,long into location(city, state etc)
       this.props.translateLocation(this.props.lat2, this.props.long2);
       // sends lat and long to api to return weather data for location
@@ -66,6 +67,12 @@ class App extends Component {
   render() {
     const childProps = {
       weather: this.props.weather
+    }
+    if (this.props.weather) {
+      console.log('weather', this.props.weather)
+    }
+    if (this.props.locArray) {
+      console.log('location', this.props.locArray[0].formatted_address);
     }
     return (
       <div id='main-page'>
