@@ -99,8 +99,8 @@ export const handleWeather = (state=initialStateWeather, action={}) => {
 
 const initialStateLatLong = {
   latLongPending: false,
-  latitude: '40.754932',
-  longitude: '-73.984016'
+  latitude: '',
+  longitude: ''
 }
 
 export const getLatLong = (state=initialStateLatLong, action={}) => {
@@ -122,8 +122,8 @@ export const getLatLong = (state=initialStateLatLong, action={}) => {
 
 const initialLocation = {
   locateUserPending: false,
-  latitude: '40.754932',
-  longitude: '-73.984016'
+  latitude: '',
+  longitude: ''
 }
 
 export const locateUser = (state=initialLocation, action={}) => {

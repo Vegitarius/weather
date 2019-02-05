@@ -49,18 +49,18 @@ class App extends Component {
     }
   }
 
-  handleUpdate() {
+  async handleUpdate() {
     if (this.props.latitude && this.props.longitude) {
       // sends lat and long to geocode api that translates lat,long into location(city, state etc)
-      this.props.translateLocation(this.props.latitude, this.props.longitude);
+      await this.props.translateLocation(this.props.latitude, this.props.longitude);
       // sends lat and long to api to return weather data for location
-      this.props.handleWeather(this.props.latitude, this.props.longitude);
+      await this.props.handleWeather(this.props.latitude, this.props.longitude);
     } 
     if (this.props.lat2 && this.props.long2 && !this.props.zcTakeover) {
       // sends lat and long to geocode api that translates lat,long into location(city, state etc)
-      this.props.translateLocation(this.props.lat2, this.props.long2);
+      await this.props.translateLocation(this.props.lat2, this.props.long2);
       // sends lat and long to api to return weather data for location
-      this.props.handleWeather(this.props.lat2, this.props.long2);
+      await this.props.handleWeather(this.props.lat2, this.props.long2);
     }
   }
 
