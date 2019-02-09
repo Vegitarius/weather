@@ -9,7 +9,13 @@
   align-self: center;
 }
 
+.hour img {
+  height: 75px;
+  width: auto;
+}
+
 .hour-date {
+  margin-left: 10px;
   width: 40%;
 }
 
