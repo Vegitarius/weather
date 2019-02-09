@@ -19,11 +19,43 @@ import {
   FOCUS_CARD
 } from './constants';
 
+const initialStateWeather = {
+  weather: null,
+  currentTemp: null,
+  currentIcon: null,
+  todayHigh: null,
+  todayLow: null,
+  weatherPending: false
+}
+
+export const handleWeather = (state=initialStateWeather, action={}) => {
+  switch(action.type) {
+    case WEATHER_FINDER_PENDING:
+      return Object.assign({}, state, { weatherPending: true })
+    case WEATHER_FINDER_SUCCESS:
+      return Object.assign({}, state, { 
+        weather: action.payload, 
+        currentTemp: action.payload.currently.temperature.toFixed(0),
+        currentIcon: action.payload.currently.icon,
+        currentSummary: action.payload.currently.summary,
+        currentFeelsLike: action.payload.currently.apparentTemperature.toFixed(0),
+        todayHigh: action.payload.daily.data[0].temperatureHigh.toFixed(0),
+        todayLow: action.payload.daily.data[0].temperatureLow.toFixed(0),
+        weatherPending: false 
+      })
+    case WEATHER_FINDER_FAILED:
+      return Object.assign({}, state, { error: action.payload, weatherPending: false })
+    default:
+      return state;
+  }
+}
+
 const initialStateLocation = {
   geoPending: false,
   location: "Manhattan, NY",
   country: 'none',
-  locArray: null
+  locArray: null,
+  weather : { latitude: 47}
 }
 
 export const translateLocation = (state=initialStateLocation, action={}) => {
@@ -66,37 +98,6 @@ export const translateLocation = (state=initialStateLocation, action={}) => {
   }
 }
 
-const initialStateWeather = {
-  weather: null,
-  currentTemp: null,
-  currentIcon: null,
-  todayHigh: null,
-  todayLow: null,
-  weatherPending: false
-}
-
-export const handleWeather = (state=initialStateWeather, action={}) => {
-  switch(action.type) {
-    case WEATHER_FINDER_PENDING:
-      return Object.assign({}, state, { weatherPending: true })
-    case WEATHER_FINDER_SUCCESS:
-      return Object.assign({}, state, { 
-        weather: action.payload, 
-        currentTemp: action.payload.currently.temperature.toFixed(0),
-        currentIcon: action.payload.currently.icon,
-        currentSummary: action.payload.currently.summary,
-        currentFeelsLike: action.payload.currently.apparentTemperature.toFixed(0),
-        todayHigh: action.payload.daily.data[0].temperatureHigh.toFixed(0),
-        todayLow: action.payload.daily.data[0].temperatureLow.toFixed(0),
-        weatherPending: false 
-      })
-    case WEATHER_FINDER_FAILED:
-      return Object.assign({}, state, { error: action.payload, weatherPending: false })
-    default:
-      return state;
-  }
-}
-
 const initialStateLatLong = {
   latLongPending: false,
   latitude: '',
@@ -122,6 +123,7 @@ export const getLatLong = (state=initialStateLatLong, action={}) => {
 
 const initialLocation = {
   locateUserPending: false,
+  userLocated: false,
   latitude: '',
   longitude: ''
 }
@@ -134,7 +136,8 @@ export const locateUser = (state=initialLocation, action={}) => {
       return Object.assign({}, state, {
         latitude: String(action.payload.coords.latitude),
         longitude: String(action.payload.coords.longitude),
-        locateUserPending: false
+        locateUserPending: false,
+        userLocated: true
       })
     case LOCATE_USER_FAILED:
       return Object.assign({}, state, { error: action.payload, locateUserPending: false})

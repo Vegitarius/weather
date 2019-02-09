@@ -19,7 +19,8 @@ const mapStateToProps = state => ({
     locArray: state.translateLocation.locArray,
     country: state.translateLocation.country,
     zipcode: state.setZipcode.zipcode,
-    zcTakeover: state.setZipcode.zcTakeover
+    zcTakeover: state.setZipcode.zcTakeover,
+    userLocated: state.locateUser.userLocated
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -39,23 +40,34 @@ class App extends Component {
 
   async componentDidMount() {
     await this.props.locateUser();
-    await this.props.getLatLong(this.props.zipcode);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.latitude !== this.props.latitude 
-      || prevProps.lat2 !== this.props.lat2) {
-      this.handleUpdate();
+    if (!this.props.userLocated) {
+      this.props.getLatLong(this.props.zipcode);
     }
   }
 
-  async handleUpdate() {
-    if (this.props.latitude && this.props.longitude) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.latitude !== this.props.latitude) {
+      this.handleUpdateFirst();
+    }
+    if (prevProps.lat2 !== this.props.lat2) {
+      this.handleUpdateSecond();
+    }
+  }
+
+  // was having trouble with app not updating properly when user
+  // revisited unloaded site after accepting location service
+
+  async handleUpdateFirst() {
+    if (this.props.latitude && this.props.longitude && this.props.zcTakeover) {
       // sends lat and long to geocode api that translates lat,long into location(city, state etc)
       await this.props.translateLocation(this.props.latitude, this.props.longitude);
       // sends lat and long to api to return weather data for location
       await this.props.handleWeather(this.props.latitude, this.props.longitude);
     } 
+  }
+
+  // updates information when user is located
+  async handleUpdateSecond() {
     if (this.props.lat2 && this.props.long2 && !this.props.zcTakeover) {
       // sends lat and long to geocode api that translates lat,long into location(city, state etc)
       await this.props.translateLocation(this.props.lat2, this.props.long2);
