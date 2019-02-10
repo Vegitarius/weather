@@ -13,7 +13,7 @@ class Minutely extends Component {
     const { weather, location } = this.props;
     let minutes = [], summary;
     if (weather) {
-      console.log(weather);
+      // console.log(weather);
       summary = weather.minutely.summary;
       for (let i = 0; i < weather.minutely.data.length; i++) {
         let minuteWeather = weather.minutely.data[i];

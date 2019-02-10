@@ -14,7 +14,7 @@ class Hourly extends Component {
     let hours = [], summary;
 
     if (weather) {
-      console.log(weather);
+      // console.log(weather);
       summary = weather.hourly.summary;
       for (let i = 0; i < weather.hourly.data.length; i++) {
         let hourWeather = weather.hourly.data[i];

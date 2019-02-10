@@ -64,7 +64,6 @@ class FocusedDay extends Component {
     const dayWeather = weather.daily.data[focusedCard];
     let iconImg = findIcon(dayWeather.icon);
     let userTimezone = (new Date().getTimezoneOffset()/60)*-1;
-    console.log('usertz', userTimezone, 'weathertz', weather.offset);
     let userTimeOffset = userTimezone > weather.offset ? userTimezone - weather.offset : userTimezone - weather.offset;
 
     const DOW = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -75,8 +74,6 @@ class FocusedDay extends Component {
 
     let sunUp = this.handleSun((new Date(dayWeather.sunriseTime*1000).getHours()-userTimeOffset), new Date(dayWeather.sunriseTime*1000).getMinutes())
     let sunDown = this.handleSun((new Date(dayWeather.sunsetTime*1000).getHours()-userTimeOffset), new Date(dayWeather.sunsetTime*1000).getMinutes())
-
-    console.log(sunUp, sunDown, userTimeOffset)
 
     let precip = dayWeather.precipProbability
     ? <p>Precipitation: {(dayWeather.precipProbability*100).toFixed(0)}% chance of {dayWeather.precipType} at {this.handleAmpm(new Date(dayWeather.precipIntensityMaxTime*1000).getHours())}</p>
