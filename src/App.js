@@ -77,15 +77,17 @@ class App extends Component {
   }
 
   render() {
-    const childProps = {
-      weather: this.props.weather
-    }
     if (this.props.weather) {
       console.log('weather', this.props.weather)
     }
     if (this.props.locArray) {
       console.log('location', this.props.locArray[0].formatted_address);
     }
+
+    const childProps = {
+      weather: this.props.weather
+    }
+    
     return (
       <div id='main-page'>
         <Nav />
