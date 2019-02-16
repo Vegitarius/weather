@@ -1,1 +1,1 @@
-web: ./react-web run start
+web: ./react-web npm run start
