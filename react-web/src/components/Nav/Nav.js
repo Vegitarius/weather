@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setZipcode, getLatLong } from '../../actions';
+import { Link } from 'react-router-dom';
 import './Nav.css';
 
 const mapStateToProps = state => {
@@ -24,7 +25,9 @@ class Nav extends Component {
     return (
       <nav>
         <div id='nav-top'>
+        <Link to='/'>
           <img src={require("../../assets/icon.png")} alt="icon"/>
+        </Link>
           <div id='nav-top-r'>
             <input placeholder="Zipcode" onChange={this.props.setZipcode} />
             <button onClick={() => this.handleZipSubmit()}>Submit</button>
