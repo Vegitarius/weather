@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './Current.css';
 import findIcon from '../findIcon';
+import Loading from '../Loading/Loading';
 
 const mapStateToProps = state => {
   return {
@@ -41,7 +42,7 @@ class Current extends React.Component {
           Currently
         </div>
         {weatherPending 
-        ? <h3>Weather Information loading...</h3>
+        ? <Loading />
         : <div id='weather-wrapper'>
           <div id="weather-img"  className="col2">
           {weatherImg}
