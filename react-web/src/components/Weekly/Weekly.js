@@ -13,6 +13,7 @@ const mapStateToProps = state => ({
 
 class Weekly extends Component {
   render() {
+    document.title = 'Weekly Weather4-u'
     const { weather, location, focusedCard } = this.props;
     let days = [], summary;
     if (this.props.date) {

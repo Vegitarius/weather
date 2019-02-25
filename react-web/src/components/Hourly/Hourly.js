@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 
 class Hourly extends Component {
   render() {
+    document.title = 'Hourly Weather4-u'
     const { weather, location } = this.props;
     let hours = [], summary;
 

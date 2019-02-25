@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 
 class Minutely extends Component {
   render() {
+    document.title = 'Minutely Weather4-u'
     const { weather, location } = this.props;
     let minutes = [], summary;
     if (weather) {

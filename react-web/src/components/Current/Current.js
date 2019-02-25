@@ -28,6 +28,7 @@ class Current extends React.Component {
   }
 
   render() {
+    document.title = 'Current Weahter4-u'
     // console.log(this.props.location, this.props.weather);
     const { location, currentTemp, currentSummary,
             currentIcon, currentFeelsLike,
