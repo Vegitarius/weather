@@ -47,7 +47,7 @@ class Current extends React.Component {
         : <div id='weather-wrapper'>
           <div id="weather-img"  className="col2">
           {weatherImg}
-        </div>
+          </div>
           <div id="col1">
             <div id="current-temperature">
               {currentTemp}&deg;
