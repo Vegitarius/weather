@@ -1,29 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Current from '../Current/Current';
+import Alerts from '../Alerts/Alerts';
 import Loading from '../Loading/Loading';
 
 const mapStateToProps = state => ({
-  weather: state.handleWeather.weather,
   weatherPending: state.handleWeather.weatherPending,
 })
 
 class Home extends Component {
-  render() {
-      const { weather } = this.props;
-      console.log(weather);
-      let alerts = <p>No Weather Alerts</p>
-      if (weather) {
-        if (weather.alerts) alerts = <p>Alerts</p> 
-      }
-      
+  render() {  
     return (
       <div>
         {this.props.weatherPending
           ? <Loading />
           : <div>
-              {alerts}
               <Current />
+              <Alerts />
             </div>
         }
       </div>

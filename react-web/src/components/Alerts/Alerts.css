@@ -1,0 +1,17 @@
+.alert-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.alert-info {
+  width: 100%;
+  display: flex;
+}
+
+.alert-info > * {
+  flex: 1;
+}
+
+.alert {
+
+}
