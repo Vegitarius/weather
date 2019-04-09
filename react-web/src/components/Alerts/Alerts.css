@@ -1,11 +1,30 @@
+.alerts-container {
+}
+
+.alerts-button {
+  font-size: 26px;
+  width: 30%;
+  margin: 4% 35% 0 35%;
+  border-radius: 10px; 
+  background: lightblue;
+  transition-duration: .4s;
+}
+
+.alerts-button:hover {
+  transform: scale(1.1);
+}
+
 .alert-list {
   list-style-type: none;
   padding-left: 0;
 }
 
 .alert-info {
-  width: 100%;
   display: flex;
+  margin: 5px 20% 0 20%;
+  text-align: center;
+  width: 60%;
+  font-size: 18px;
 }
 
 .alert-info > * {

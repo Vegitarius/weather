@@ -7,10 +7,25 @@ const mapStateToProps = state => ({
 })
 
 class Alerts extends Component { 
+  constructor() {
+    super();
+    this.state = {
+      alerts: false,
+      displayAlerts: false
+    }
+  }
+
+  componentWillMount() {
+    if (this.props.weather) {
+      if (this.props.weather.alerts) {
+        this.setState({ alerts: true })
+      }
+    }
+  }
+
   render() {
     const { weather } = this.props;
-    console.log(weather);
-    let alerts = <h3>No Weather Alerts</h3>
+    let alerts = <h3 style={{ textAlign: "center" }}>No Weather Alerts</h3>
     if (weather) {
       if (weather.alerts) {
         alerts = this.props.weather.alerts.map((alert, i) => {
@@ -30,11 +45,21 @@ class Alerts extends Component {
     }
 
     return (
-      <div>
-        <h1>Weather Alerts:</h1>
-        <ul className='alert-list'>
-          {alerts}
-        </ul>
+      <div className='alerts-container'>
+        {this.state.alerts
+        ? 
+        <div>
+          <button className='alerts-button' onClick={() => this.setState({ displayAlerts: !this.state.displayAlerts })}>Weather Alerts</button>
+          {this.state.displayAlerts
+          ? <ul className='alert-list'>
+              {alerts}
+            </ul>
+          : null
+          }
+        </div>
+        : 
+        null
+        }
       </div>
     )
   }

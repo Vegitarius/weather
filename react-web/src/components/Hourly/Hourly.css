@@ -1,9 +1,44 @@
 #hourly-weather {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-height: 83%;
+  width: 100%;
+}
+
+#hourly-weather span {
+  height: auto;
+  align-self: center;
+  width: 75%;
+}
+
+#hourly-weather span > * {
+  margin: 0;
+  padding: 5px;
+}
+
+#hourly-weather span h2 {
+  font-size: 36px;
+  text-decoration: underline;
+}
+
+#hourly-weather span p {
+  font-size: 18px;
 }
 
 #hourly-hour {
   display: flex;
   flex-direction: column;
+}
+
+#hourly-hour {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+#hourly-hour > * {
+  background: lightblue;
+  flex: 1 1;
+  box-shadow: 5px 5px 5px lightgray;
 }

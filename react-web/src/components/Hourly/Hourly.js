@@ -30,7 +30,7 @@ class Hourly extends Component {
     
     return (
       <div id='hourly-weather'>
-        <span><h1>{location}</h1>
+        <span><h2>{location}</h2>
         <p>{summary}</p></span>
         <div id='hourly-hour'>
           {hours}

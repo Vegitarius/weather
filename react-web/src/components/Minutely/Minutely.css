@@ -1,9 +1,32 @@
 #minutely-weather {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-height: 83%;
+  width: 100%;
 }
 
 #minutes-container {
   display: flex;
    flex-direction: column;
+}
+
+#minutely-weather span {
+  height: auto;
+  align-self: center;
+  width: 75%;
+}
+
+#minutely-weather span > * {
+  margin: 0;
+  padding: 5px;
+}
+
+#minutely-weather span h2 {
+ font-size: 36px;
+ text-decoration: underline;
+}
+
+#minutely-weather span p {
+  font-size: 18px;
 }
